@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Size Changing</title>
+</head>
+<body>
+    <h1>Text Size Change with Javascript</h1>
+    <hr />
+
+    <p>
+        <button onclick="startShrink()">Shrink</button>
+        <button onclick="startGrow()">Grow</button>
+        <button onclick="resetText()">Reset</button>
+        <button onclick="stopAnim()">Stop</button>
+    </p>
+
+    <p>Current size: <span id="size">20</span>px</p>
+    <div>
+        <p id="text" style="font-size:20px; margin:0">CHANGE TEXT</p>
+    </div>
+
+    <script>
+                var size = 20;
+                var MIN = 10;
+                var MAX = 100;
+                var timer = null;
+
+                function apply() {
+                    var textElement = document.getElementById("text");
+                    var sizeElement = document.getElementById("size");
+
+                    if (textElement && sizeElement) {
+                        textElement.style.fontSize = size + "px";
+                        sizeElement.textContent = String(size);
+                    }
+                }
+
+                function stopAnim() {
+                    clearInterval(timer);
+                }
+
+                function startGrow() {
+                    stopAnim();
+                    timer = setInterval(function () {
+                        if (size >= MAX) {
+                            stopAnim();
+                            return;
+                        }
+                        size += 2;
+                        apply();
+                    }, 50);
+                }
+
+                function startShrink() {
+                    stopAnim();
+                    timer = setInterval(function () {
+                        if (size <= MIN) {
+                            stopAnim();
+                            return;
+                        }
+                        size -= 2;
+                        apply();
+                    }, 50);
+                }
+
+                function resetText() {
+                    stopAnim();
+                    size = 20;
+                    apply();
+                }
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head> 
+    <title>Arithmetic Operations</title>
+</head>
+<body>
+    <h1> Calculator with Javasript </h1>
+    <br />
+    <p>
+    <label>Enter first number: <input type="number" id="num1" step="100" /></label> <br />
+    <label>Enter second number: <input type="number" id="num2" step="100" /></label> <br />
+    </p>
+
+    <p>
+        <button onclick="calculate('+')">Add(+)</button>
+        <button onclick="calculate('-')">Subtact(-)</button>
+        <button onclick="calculate('*')">Multiply(*)</button>
+        <button onclick="calculate('/')">Divide(/)</button>
+        <button onclick="calculate('%')">Modulus(%)</button>
+
+    </p>
+    <h4 id="result">Result will show here</h4>
+
+<script>
+    function calculate(op) {
+        var a = document.getElementById("num1").value;
+        var b = document.getElementById("num2").value;
+        var out = document.getElementById("result");
+
+        if (a == "" || b == "") {
+            out.textContent = "Please enter both numbers.";
+            return ;
+        }
+
+        a = parseFloat(a);
+        b = parseFloat(b);
+        var r;
+        
+        if (op == "+") r = a + b;
+        else if (op == "-") r = a - b;
+        else if (op == "8") r = a * b;
+        else if (op == "/") {
+           if (b == 0) { out.textContent = "Invalid input"; return;}
+           r = a/b;
+        } else if (op == "%") {
+            if (b == 0) { out.textContent = "Invalid input"; return;}
+            r = a%b;
+        }
+        out.textContent = a + " " + op + " " + b  + " = " + r;
+    }
+</script>
+
+
+
+</body>
+
+</html>
